@@ -12,9 +12,9 @@ from skimage.transform import resize
 import Augmentor
 
 from google.colab import drive
-drive.mount('/content/drive')
+drive.mount('PATH')
 
-p = Augmentor.Pipeline("/content/drive/My Drive/DATASET/train_set")
+p = Augmentor.Pipeline("PATH")
 
 p.rotate(probability=0.7, max_left_rotation=10, max_right_rotation=10)
 p.zoom(probability=0.5, min_factor=1.1, max_factor=1.5)
@@ -49,8 +49,10 @@ def load_image_files(container_path, dimension=(64, 64)):
                  target_names=categories,
                  images=images,
                  DESCR=descr)
+   
+#outputs from augmentor is stored in a directory named "output"
 
-image_dataset = load_image_files("/content/drive/My Drive/DATASET/train_set/output")
+image_dataset = load_image_files("PATH/output")
 
 X_train, X_test, y_train, y_test = train_test_split(
     image_dataset.data, image_dataset.target, test_size=0.3,random_state=109)
